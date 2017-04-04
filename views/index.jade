@@ -2,6 +2,12 @@ extends layout
 
 block content
   h1 Worst MEME Generator
+  p
+    if body.entries && body.entries.length
+      select(id="entry-date")
+        for entry in body.entries
+          option(selected=body.date == entry) #{entry}
+
   p #{body.data.featured}
   p
     a(href=body.host + body.data.potd) #{body.data.potd}
@@ -9,3 +15,5 @@ block content
   p(class='worst-meme-generator')
     span(class='label') #{body.meme}
     img(class='image' src=body.file)
+
+  script(src="js/switch.js")

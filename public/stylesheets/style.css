@@ -4,7 +4,7 @@
 }
 
 body {
-  padding: 50px;
+  padding: 10px 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   width: 100%;
   box-sizing: border-box;
@@ -16,7 +16,8 @@ a {
 
 .worst-meme-generator {
   position: relative;
-  width: 100%;
+  width: 800px;
+  margin: 0 auto;
 }
 .worst-meme-generator .image {
   position: absolute;

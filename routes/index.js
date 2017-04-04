@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var request = require('request');
 var FeedParser = require('feedparser');
@@ -7,17 +8,23 @@ var Generator = require('./../lib/generator');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/:date*?', function(req, res, next) {
 
-  var daily = new Daily();
-  var generator = new Generator();
+  var date,
+      daily = new Daily(),
+      generator = new Generator();
 
-  daily.load().then(function(response) {
+  if (req.params.date) {
+    date = req.params.date;
+  }
+
+  daily.load(date).then(function(response) {
     console.log(response);
     generator.wikipedia(response).then(function(o) {
+      console.log(o);
       res.render('index', {title: 'Express', body: o});
     }, function(error) {
-      res.render('index', { title: 'Express', body: { data: { featured: '', potd: '' }, host: ''} });
+      res.render('index', { title: 'Express', body: { data: { featured: 'No entry ' + ((date) ? 'for ' + date : ''), potd: '' }, host: ''} });
     });
   }, function(error) {
     console.log(error);
