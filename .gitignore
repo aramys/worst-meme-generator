@@ -1,5 +1,13 @@
 # App
-public/images/memes/
+memes/*.jpg
+memes/*.JPG
+memes/*.jpeg
+memes/*.JPEG
+memes/*.gif
+memes/*.GIF
+memes/*.png
+memes/*.PNG
+
 .DS_Store
 
 # Logs
