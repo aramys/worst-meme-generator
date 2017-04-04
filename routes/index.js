@@ -11,24 +11,45 @@ var router = express.Router();
 router.get('/:date*?', function(req, res, next) {
 
   var date,
+      title = 'Worst Meme Generator',
       daily = new Daily(),
       generator = new Generator();
 
   if (req.params.date) {
     date = req.params.date;
+    if (date === 'favicon.ico') {
+      res.render('index', {});
+      return;
+    }
   }
 
+  console.log('date', date);
+
   daily.load(date).then(function(response) {
-    console.log(response);
     generator.wikipedia(response).then(function(o) {
       console.log(o);
-      res.render('index', {title: 'Express', body: o});
+      res.render('index', {
+        title: title, 
+        body: o
+      });
     }, function(error) {
-      res.render('index', { title: 'Express', body: { data: { featured: 'No entry ' + ((date) ? 'for ' + date : ''), potd: '' }, host: ''} });
+      res.render('index', { 
+        title: title, 
+        body: { 
+          data: { 
+            featured: 'No entry ' + ((date) ? 'for ' + date : ''), 
+            potd: '' 
+          }, 
+          host: ''
+        } 
+      });
     });
   }, function(error) {
     console.log(error);
-    res.render('index', { title: 'Express', body: error });
+    res.render('index', { 
+      title: title, 
+      body: error 
+    });
   });
 
 });
