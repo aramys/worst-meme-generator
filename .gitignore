@@ -1,7 +1,12 @@
+# App
+public/images/memes/
+
 # Logs
 logs
 *.log
 npm-debug.log*
+
+# Intellij
 .idea/
 *.iml
 
