@@ -11,6 +11,7 @@
     "debug": "~2.6.0",
     "express": "~4.14.1",
     "feedparser": "^2.1.0",
+    "fs-jetpack": "^0.13.3",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
     "request": "^2.81.0",

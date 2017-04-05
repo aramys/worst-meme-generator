@@ -25,7 +25,19 @@ router.get('/:date*?', function(req, res, next) {
 
   console.log('date', date);
 
+
+
   daily.load(date).then(function(response) {
+    let files = generator.findByDate(date);
+
+    if (files.length) {
+      res.render('index', {
+        title: title,
+        body: generator.fileToMeme(files[0], response.entries)
+      });
+      return;
+    }
+
     generator.wikipedia(response).then(function(o) {
       console.log(o);
       res.render('index', {
