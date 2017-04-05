@@ -23,10 +23,6 @@ router.get('/:date*?', function(req, res, next) {
     }
   }
 
-  console.log('date', date);
-
-
-
   daily.load(date).then(function(response) {
     let files = generator.findByDate(date);
 
