@@ -15,7 +15,7 @@ $('#save').bind('click', function(e) {
       data: $.extend(PAGE, {
         image: dataUrl
       })
-    }).success(function(res) {
+    }).done(function(res) {
       alert('Saved');
     }).error(function(e) {
       alert('Error: ' + e);

@@ -23,10 +23,10 @@ router.post('/', function(req, res, next) {
       fs.writeFile(filePath, base64Data, 'base64', function(err) {
         console.log(err);
         if (err) {
-          res.send('file not writ');
+          res.send('failed');
           throw err;
         }
-        res.send('file writ');
+        res.send('success');
       });
 
 
