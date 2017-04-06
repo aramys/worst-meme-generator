@@ -27,14 +27,17 @@ router.get('/:date*?', function(req, res, next) {
     let files = generator.findByDate(date);
 
     if (files.length) {
+      let body = generator.fileToMeme(files[0], response.entries);
+      body.generator = 'wikipedia';
       res.render('index', {
         title: title,
-        body: generator.fileToMeme(files[0], response.entries)
+        body: body
       });
       return;
     }
 
     generator.wikipedia(response).then(function(o) {
+      o.generator = 'wikipedia';
       console.log(o);
       res.render('index', {
         title: title, 

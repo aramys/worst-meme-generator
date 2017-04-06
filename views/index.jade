@@ -8,12 +8,27 @@ block content
         for entry in body.entries
           option(selected=body.date == entry) #{entry}
 
+    button(id='save') Save
+
   p #{body.data.featured}
   p
     a(href=body.host + body.data.potd) #{body.data.potd}
 
-  p(class='worst-meme-generator')
+
+  p(id='worst-meme-generator' class='worst-meme-generator')
     span(class='label') #{body.meme}
     img(class='image' src=body.file)
 
+  p(id='render')
+
+  script
+    | window.PAGE = {
+    |  generator: "#{body.generator}",
+    |  file: "#{body.file}",
+    |  meme: "#{body.meme}"
+    | };
+
+  script(src="/jquery/jquery.min.js")
+  script(src="/dom-to-image/dom-to-image.min.js")
   script(src="js/switch.js")
+  script(src="js/dom-image.js")
